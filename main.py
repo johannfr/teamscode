@@ -11,10 +11,10 @@ import pyclip
 from dotenv import load_dotenv
 
 load_dotenv()
-USERNAME = getenv("GMAIL_USERNAME")
-APP_PASSWORD = getenv("GMAIL_APP_PASSWORD")
+USERNAME = getenv("IMAP_USERNAME")
+IMAP_PASSWORD = getenv("IMAP_PASSWORD")
+IMAP_SERVER = getenv("IMAP_SERVER")
 SEARCH_SUBJECT = "account verification code"
-IMAP_SERVER = "imap.gmail.com"
 
 
 def get_latest_email_body_by_subject(username, password, server, subject):
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     n.set_urgency(notify2.URGENCY_NORMAL)
     n.show()
     body, email_datetime = get_latest_email_body_by_subject(
-        USERNAME, APP_PASSWORD, IMAP_SERVER, SEARCH_SUBJECT
+        USERNAME, IMAP_PASSWORD, IMAP_SERVER, SEARCH_SUBJECT
     )
     if body:
         match = re.search(r"Account verification code:\s*(\d+)\s", body)
